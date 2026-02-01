@@ -1,0 +1,364 @@
+---
+URL: https://developer.apple.com/videos/play/wwdc2024/10163/
+Title: Discover Swift enhancements in the Vision framework
+Topics: Apple Frameworks, Swift Concurrency
+Date_Published: June 2024
+Swift_Version_At_Publish: Swift 6.0
+---
+
+# Discover Swift enhancements in the Vision framework
+
+Discover Swift enhancements in the Vision framework. Vision is a framework that offers computer vision APIs developers can use to create incredible apps and experiences. This year, it will be even easier to bring computer vision into your apps. We are excited to announce a new API that is just as powerful as before, now with streamlined syntax designed for Swift. We are also introducing full support for Swift Concurrency and Swift 6, enabling you to write the most performant apps yet.
+
+### Chapters
+
+- 0:00 - [Introduction](https://developer.apple.com/videos/play/wwdc2024/10163/?time=0)
+- 2:30 - [Basic API Usage](https://developer.apple.com/videos/play/wwdc2024/10163/?time=150)
+- 5:45 - [Optimizing with Swift Concurrency](https://developer.apple.com/videos/play/wwdc2024/10163/?time=345)
+- 8:15 - [Updating Existing Applications](https://developer.apple.com/videos/play/wwdc2024/10163/?time=495)
+- 11:30 - [New Capabilities](https://developer.apple.com/videos/play/wwdc2024/10163/?time=690)
+
+### Resources
+
+- [Vision Framework Documentation](https://developer.apple.com/documentation/vision)
+- [HD Video](https://devstreaming-cdn.apple.com/videos/wwdc/2024/10163/6/0c2c6210-4f59-409a-ba23-36a7895563d3/downloads/wwdc2024-10163_hd.mp4?dl=1)
+- [SD Video](https://devstreaming-cdn.apple.com/videos/wwdc/2024/10163/6/0c2c6210-4f59-409a-ba23-36a7895563d3/downloads/wwdc2024-10163_sd.mp4?dl=1)
+
+### Related Videos
+
+#### WWDC24
+
+- [Enhance your machine learning models with on-device training](https://developer.apple.com/videos/play/wwdc2024/10148/)
+- [Unlock the power of your camera with the Photos app](https://developer.apple.com/videos/play/wwdc2024/10170/)
+- [What's new in SwiftUI](https://developer.apple.com/videos/play/wwdc2024/10197/)
+
+## Transcript
+
+<Transcript>
+
+0:07
+
+Hi. I’m Megan Williams, and I work on the Vision framework team. Vision is a framework that offers computer vision APIs developers can use to create incredible apps and experiences. Let me show you some of the things you can do with the Vision framework. Vision can detect faces and face landmarks like eyes, nose, and mouth.
+
+0:30
+
+The Vision framework can recognize text in 18 different languages, including Korean, Swedish, and Chinese! For health and fitness applications, Vision can track body poses and trajectories.
+
+0:45
+
+Vision also has a hand-pose tracking feature that enables a whole new way of interacting with an Apple device without touching a screen. These are just a few examples. Thousands of developers all around the world have used Vision to build incredible apps. This year, it will be even easier to bring computer vision into your apps. We are excited to announce a new API that is just as powerful as before, now with streamlined syntax designed for Swift.
+
+1:18
+
+We are also introducing full support for Swift Concurrency and Swift 6, enabling you to write the most performant apps yet. In the rest of this video we will show you how to get started with the new Swift API. Then, we’ll demonstrate how to optimize your apps with Swift Concurrency. Next, we will explain how to update existing Vision applications to use the new API. And finally, we’ll introduce some new capabilities in Vision this year. Let’s get started! In Vision, everything begins with a request. Think of a Vision request as a question we would ask of an image. Such as "Where are the faces are in this image?" "What is the total on this receipt?" Or, "What is the subject of this image?" We can ask these questions with DetectFaceRectangleRequest to find faces, RecognizeTextRequest to understand text, and GenerateObjectnessBasedSaliencyImageRequest to find salient objects in an image.
+
+2:24
+
+Now that we have some questions, we also want some answers. Vision provides the answers to these questions in the form of observations, which are produced by performing requests.
+
+2:37
+
+DetectFaceRectanglesRequest produces FaceObservations that tells us where the faces are. RecognizedTextObservation can help understand text And SaliencyImageObservation helps highlight what’s important in the image.
+
+2:57
+
+These are just a few examples. Vision has 31 different requests, each representing a type of image analysis. While there are way too many requests to cover in this video, I want to highlight some of my favorites. Vision has requests for common computer vision tasks like image classification, and text recognition. Vision can detect and recognize a variety of objects in images like barcodes, people, and animals. There are also APIs for body pose estimation, in both 2D and 3D. Vision can also detect moving objects and track them over multiple frames! Now that we understand what requests are, Let’s see what an example looks like in code. I am going to build a grocery store application. In order to navigate all the different products in a grocery store, I want to be able to scan their barcodes. I can do this with DetectBarcodesRequest.
+
+4:03
+
+Let’s scan the barcode in this image. I’ll begin by creating the request. Then, I’ll perform the request on the image.
+
+4:13
+
+This will produce barcodeObservations, one observation for each barcode detected in the image.
+
+4:21
+
+The request may fail, so I need to add a try statement.
+
+4:26
+
+Another important note is that the new APIs are asynchronous, so the app must await for them to finish. And that’s it. We can detect barcodes with just 3 lines of code.
+
+4:39
+
+This is just one example, but all Vision requests follow the same general structure.
+
+4:46
+
+Once I’ve detected a barcode, I can get the product information from the barcode’s payload. I can use this to scan the barcode. I also want to know where the barcode is located in the image, so I can highlight it for my users. I can get the barcode’s location from the .boundingBox property. It is important to note that Vision observations have coordinates that are normalized to the image.
+
+5:13
+
+In Vision’s system, the coordinates are normalized between 0 and 1, and the origin is in the lower left hand corner.
+
+5:21
+
+This may be different from other frameworks you are used to, such as SwiftUI, which places the origin in the upper left hand corner. But don’t worry. We are offering a new API this year to help perform the conversion between different coordinate systems. To convert from Vision’s normalized coordinates back into the coordinates of the original image, I can call toImageCoordinates(), and pass in the size of my image. I can also specify whether the coordinate origin should be in the upper left or lower left hand corner of the image. I’m going to use to upperLeft.
+
+5:57
+
+This will give us the bounding boxes in the original coordinate space as the image with the origin in the upper left hand corner. Now we can know where the barcodes are located within the original image, and highlight them for our users.
+
+6:12
+
+Now that I have an app that can scan for barcodes, I can make a few optimizations to make the app even better. Many request have properties that can be configured to fine-tune them for better performance. DetectBarcodesRequest() will by default scan for many different types of barcodes. Because I am building a grocery store application, I can instead just scan for barcodes commonly encountered in grocery stores.
+
+6:38
+
+I will set the symbologies property on the request to just scan for .ean13. This will be more efficient than scanning for all barcode types, and will give my app better performance.
+
+6:53
+
+Now that we’ve covered basic API usage, let’s highlight some more advanced use cases for our grocery store application. We can scan images for barcodes, but what if the product doesn’t have a barcode? Instead, I’ll identify the product by the text on the label. I will need to perform a second request, and in this case, I’ll use RecognizeTextRequest().
+
+7:17
+
+I will create the requests like before.
+
+7:20
+
+While I could perform the requests one at a time, for optimal performance Vision recommends performing requests together. To do this I’ll need an ImageRequestHandler.
+
+7:31
+
+Think of an ImageRequestHandler as a container for an image. I’ll use the handler to perform the requests. The handler will return one result for each request.
+
+7:44
+
+Now I can scan for barcodes in an image and identity any text labels at the same time.
+
+7:51
+
+One thing to note is that this perform call uses parameter pack syntax, which allows us to perform an arbitrary number of requests. Another thing I want to mention is that using this method, we must wait for all requests to finish before we can use their results.
+
+8:08
+
+This may be fine for some applications. However, in our grocery store application, If the DetectBarcodesRequest detects a barcode, we don’t want to have to have to wait for the RecognizeTextRequest to finish before scanning the barcode. Vision provides an alternate API called performAll that allows us to perform multiple requests together and process their results as soon as each requests finishes. performAll returns results as a stream meaning when a request is done, the results are returned immediately while other requests are still running.
+
+8:44
+
+To access observations, I await for results from the stream.
+
+8:49
+
+This lets me use the barcode observations immediately when they become available, without waiting for the RecognizeTextRequest to finish.
+
+8:58
+
+Now that we’ve covered the basics, let’s talk about optimizing Vision APIs with Swift Concurrency. There are many times when an application may want to process multiple images. These images can be processed one at a time in a for-loop. However, for best performance, we can use concurrency.
+
+9:20
+
+This allows us to take batches of images and process them at the same time.
+
+9:25
+
+Let’s say we have a photo library with a bunch of images. I want to display the images in a grid view, however the images are different sizes. The first thing I need to do is crop the images to a square.
+
+9:39
+
+The goal is to crop to the main subject of the image. I will use GenerateObjectnessBasedSaliencyImageRequest to identify the location of the main subjects in the image, and create a crop around that.
+
+9:55
+
+I’m going to write a function, generateThumbnail, that creates a crop around the salient parts of the image. Then, I’ll use a for-loop to iterate over the images in my library and generate a thumbnail for each one. I’m processing each image one at a time, which can be slow. I can use concurrency to speed this up.
+
+10:18
+
+I’ll instead use TaskGroups. With TaskGroups, I can create multiple tasks that perform requests in parallel. I need to make one more adjustment to this code.
+
+10:31
+
+Vision requests can be memory-intensive, so I recommend limiting the number of Vision requests performed at the same time to reduce your app’s memory footprint. In this case, I will limit the number of tasks to 5.
+
+10:45
+
+When a task finishes, I will add another task to begin processing the next image. This guarantees I am processing no more than 5 requests at a time. I have chosen to limit the number of tasks to 5 for my application. However, you may find a different limit works better for your applications.
+
+11:05
+
+Now we’ll demonstrate how to update your applications to the new APIs. Our old Swift APIs aren’t going away. However, to take full advantage of Swift 6 and Swift Concurrency, I strongly recommend adopting the new APIs in your application.
+
+11:22
+
+Before we begin, we have one additional housekeeping note. To reduce our memory footprint, Vision will remove CPU and GPU support for some requests on devices with a Neural Engine.
+
+11:35
+
+On these device, the Neural Engine is the most performant option.
+
+11:40
+
+You can always check what compute devices are supported by a request using the supportedComputeDevices() API.
+
+11:49
+
+Now, let’s dive in to how to update an existing Vision application to use the new API. We can do this in just three steps.
+
+11:58
+
+First, we need to adopt the new request and observation types. Most requests in the old API have a direct equivalent in the new API.
+
+12:08
+
+To get the new request or observation type, remove the VN prefix from Vision type names.
+
+12:15
+
+Next, Vision has eliminated the completion handler for requests and replaced it with async/await syntax.
+
+12:24
+
+Finally, the observations produced by requests are returned directly from the perform() call Let’s update some code. This code uses the old Vision API to detect barcodes in an image.
+
+12:38
+
+I’ll update VNDetectBarcodesRequest to use the new request by removing the VN prefix.
+
+12:46
+
+In the old API, we processed the results in the completion handler. Now, results are returned directly from perform(), so I will remove the completion handler.
+
+12:58
+
+I will instead adopt async/await syntax for the perform() call.
+
+13:04
+
+To use the asynchronous API, I also need to make my function async.
+
+13:10
+
+Instead of getting barcode observations from the completion handler, the observations are now returned directly from the perform() call. You may also notice that I don’t have to unwrap the optional anymore. Lastly, since I’m just performing one request, the imageRequestHandler is not really needed. I’ll remove it to simplify the code.
+
+13:34
+
+And that’s it.
+
+13:37
+
+By adopting the new API, the number of lines of code has been reduced from 10 to just six! The streamlined syntax is awesome. Finally, there are two new capabilities offered by vision this year. Vision is introducing a new request called CalculateImageAestheticsScoresRequest. This request can be used to assess image quality and find memorable photos.
+
+14:02
+
+There are multiple factors that get analyzed to determine image quality such as blur and exposure. This quality is represented by an overall score assigned to the image.
+
+14:13
+
+The request also identifies utility images, which are images that may be useful but are not particularly memorable, like screenshots or photos of receipts. Let’s see some examples.
+
+14:26
+
+This image of a beautiful landscape has a high score. It’s well taken, with good exposure, and the scene looks very memorable.
+
+14:36
+
+This image doesn’t have a clear focus. It looks like it was taken by accident and has a low score.
+
+14:44
+
+This image of a wooden box is technically well taken, but it might not be a memorable photo that you would want to share with friends. This is a utility image.
+
+14:54
+
+To use the new API, just use CalculateImageAestheticsScoresRequest. This request generates a ImageAestheticsScoresObservation, which has an overall score that ranges from -1 to 1 indicating how well taken the image is. This observation also has another property called isUtility, which is true for photos that are well taken, but have non-memorable content.
+
+15:21
+
+Also new to Vision this year is holistic body pose.
+
+15:26
+
+Previously in Vision, we had separate requests for body and hands pose detection.
+
+15:32
+
+Holistic body pose allows you to detect hands and body together.
+
+15:38
+
+To use holistic body pose, create a DetectHumanBodyPoseRequest.
+
+15:44
+
+Set detectsHands on the request to true.
+
+15:49
+
+This request produces a HumanBodyPoseObservation, which now has two additional properties, one for the right hand observation and one for the left. This was a lot new stuff, so let me recap. Our new Swift API works well in the Swift ecosystem by supporting Concurrency and Swift 6. This will make adoption of Vision in your Swift applications a lot easier.
+
+16:15
+
+With that in mind, Vision will only introduce new features in Swift moving forward. Our existing APIs are not going away, but we highly recommend adopting the new API. The new Image Aesthetics and Holistic Body Pose APIs allow you to add new functionality to your applications.
+
+16:35
+
+Thanks for watching. And I can’t wait to see all the great apps you create with Vision.
+
+</Transcript>
+
+## Code
+
+### Basic Barcode Detection
+
+```swift
+let request = DetectBarcodesRequest()
+let observations = try await request.perform(on: image)
+```
+
+### Coordinate Conversion
+
+```swift
+let boundingBox = observation.boundingBox
+let imageCoordinates = boundingBox.toImageCoordinates(forImageSize: image.size, origin: .upperLeft)
+```
+
+### Multiple Requests
+
+```swift
+let handler = ImageRequestHandler(image: image)
+let results = try await handler.perform(barcodeRequest, textRequest)
+```
+
+### Concurrency Optimization
+
+```swift
+let tasks = images.map { image in
+    Task {
+        try await generateThumbnail(for: image)
+    }
+}
+```
+
+### Updating to New API
+
+```swift
+// Old API
+let request = VNDetectBarcodesRequest { request, error in
+    // Handle results
+}
+
+// New API
+let request = DetectBarcodesRequest()
+let observations = try await request.perform(on: image)
+```
+
+## Summary
+
+- 0:00 - [Introduction](https://developer.apple.com/videos/play/wwdc2024/10163/?time=0)
+- Vision framework offers computer vision APIs for apps. New Swift API with streamlined syntax and full Swift Concurrency support.
+
+- 2:30 - [Basic API Usage](https://developer.apple.com/videos/play/wwdc2024/10163/?time=150)
+- Vision requests are questions asked of an image, producing observations. New API simplifies barcode detection and other tasks with just a few lines of code.
+
+- 5:45 - [Optimizing with Swift Concurrency](https://developer.apple.com/videos/play/wwdc2024/10163/?time=345)
+- Use TaskGroups and limit concurrent requests for better performance and memory management.
+
+- 8:15 - [Updating Existing Applications](https://developer.apple.com/videos/play/wwdc2024/10163/?time=495)
+- Migrate from VN-prefixed types to new types, replace completion handlers with async/await, and enjoy reduced code complexity.
+
+- 11:30 - [New Capabilities](https://developer.apple.com/videos/play/wwdc2024/10163/?time=690)
+- New CalculateImageAestheticsScoresRequest for image quality assessment and Holistic Body Pose for combined body and hand detection.
+
+- The new Swift API for Vision enhances developer experience with Concurrency and Swift 6 support, while maintaining backward compatibility.

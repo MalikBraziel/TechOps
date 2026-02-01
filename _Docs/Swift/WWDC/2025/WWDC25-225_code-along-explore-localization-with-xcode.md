@@ -1,0 +1,350 @@
+---
+URL: https://developer.apple.com/videos/play/wwdc2025/225/
+Title: Code-along: Explore localization with Xcode
+Topics:
+Date_Published: June 2025
+Swift_Version_At_Publish: Swift 6.1
+---
+
+
+# Code-along: Explore localization with Xcode
+
+Learn how to localize your app into additional languages using Xcode. We'll walk step-by-step through the process of creating a String Catalog, translating text, and exchanging files with external translators. You'll learn best practices for providing necessary context to translators and how Xcode can help to provide this information automatically. For larger projects, we'll also dive into techniques to manage complexity and streamline string management using type-safe Swift code.
+
+### Chapters
+
+- 0:00 - [Introduction](https://developer.apple.com/videos/play/wwdc2025/225/?time=0)
+- 0:38 - [Getting started](https://developer.apple.com/videos/play/wwdc2025/225/?time=38)
+- 5:33 - [Translation context](https://developer.apple.com/videos/play/wwdc2025/225/?time=333)
+- 9:33 - [Managing complexity](https://developer.apple.com/videos/play/wwdc2025/225/?time=573)
+- 20:49 - [Next steps](https://developer.apple.com/videos/play/wwdc2025/225/?time=1249)
+
+### Resources
+
+- [Expanding Your App to New Markets](https://developer.apple.com/localization/)
+- [Localizing Landmarks](https://developer.apple.com/documentation/Xcode/localizing-landmarks)
+- [HD Video](https://devstreaming-cdn.apple.com/videos/wwdc/2025/225/5/24973a20-a8c9-4ec6-ad29-6adfde87ea5c/downloads/wwdc2025-225_hd.mp4?dl=1)
+- [SD Video](https://devstreaming-cdn.apple.com/videos/wwdc/2025/225/5/24973a20-a8c9-4ec6-ad29-6adfde87ea5c/downloads/wwdc2025-225_sd.mp4?dl=1)
+
+### Related Videos
+
+#### WWDC23
+
+- [Discover String Catalogs](https://developer.apple.com/videos/play/wwdc2023/10155)
+
+## Transcript
+
+<Transcript>
+
+0:07
+
+Hello! I'm Andreas from the localization team. In this session we are going to explore localization with Xcode.
+
+0:17
+
+No prior knowledge is required for this session. We are going to explore together how to set up an app for localization. Then, we'll talk about providing the right context to people working on translating your app, And finally, we'll dive into some of the complexity you might run-into as your project grows, and talk about new features to help you manage it! Let's get started! This session is a code-along. That means that you can apply steps in this video to the sample project linked in the description. Download the Landmarks project and start localizing it with me! I have the project open in Xcode. This version of Landmarks works great in English, but doesn't have any translations yet. To get started, let's add a String Catalog using the File menu.
+
+1:08
+
+We can use the default name “Localizable”, but I want it to go into the Resources group. That’s where the Asset Catalog is, too. Now that the String Catalog has been added, let's build the project. When a String Catalog is present, Xcode discovers localizable strings after each build, and adds them to the Catalog automatically. We don't have to do anything special to keep our strings in the Catalog in sync with the code. But how does Xcode know which strings we want to localize? Well, most SwiftUI API makes strings localizable by default. That includes views like Text and Button. In the rest of our code, String(localized: ) makes strings available for localization as well.
+
+1:52
+
+Now, I'll use the Assistant Editor to understand where strings in the String Catalog have been extracted from.
+
+2:00
+
+This one comes from a confirmation dialog.
+
+2:05
+
+Here we have a string used as title of a LabeledContent This string is used as a navigation title. And this one comes from Text using an interpolated variable. As you can see, most SwiftUI API is localizable out of the box. You might have already noticed, that this string represents some number of items. The placeholder %lld will be replaced with the number of landmarks at runtime. And we want this string to be different, depending on that number. For example, we want it to say: "1 item", and "2 items".
+
+2:41
+
+To do that, let's open the context menu and select "Vary by Plural".
+
+2:47
+
+Now we can write the phrases for one item, and multiple items.
+
+2:54
+
+At runtime, the system will pick the right string to match the number. That was an easy fix.
+
+3:00
+
+Now, localization is all about other languages. I happen to speak German, so I can write some of the translations myself, right in the String Catalog. Let’s close the Assistant. To add a language to the project, I click the plus button in the bottom bar, and select German. That's all it takes, and I'll start adding a few translations.
+
+3:32
+
+Notice how, the state changes from NEW to TRANSLATED as I make progress, indicated by the green checkmark on the right! At the same time, the overall translation percentage in the sidebar has increased to 8%. I'm a better developer than I am a translator though, so I teamed up with a language expert. I'd rather have them finish the remaining German translations.
+
+3:55
+
+To send them what I have so far, I go to the Product menu in Xcode, and select "Export Localizations". Because I’m translating my app into German, I'd like to export only German.
+
+4:12
+
+This will produce a localization-catalog file with all German translations I have so far, as well as the English strings that have not yet been translated. This package-file contains an industry-standard XLIFF file, which translation services can easily work with. Once they're done, they will send back the fully translated localization catalog.
+
+4:34
+
+To import it back into the project, I go to the Product menu again, and select "Import Localizations". Xcode takes a moment to build the project, but then all strings are marked as translated, and German is at 100%. You can do that too! The sample project contains the fully translated de.xcloc file that you can import into Xcode just like I did. Now it's time to test this in action, and I'd like to run the app in German. I'll open the scheme editor, edit the scheme, select "Run" and navigate to "Options".
+
+5:11
+
+Here we can change the app's language to German for the next debug run.
+
+5:18
+
+Now I'll build and run the app on my Mac.
+
+5:24
+
+It's fully localized to German and I love the new look! That is how easy it is to set up a new app for localization. Now let's take a deeper look at how we can provide additional context to our translators to ensure high quality translations. The Assistant Editor in Xcode is fantastic to see the code right next to the String Catalog. But translators often don't see our code, or the running app when translating strings. We need to provide additional context to help them write the best translation.
+
+6:00
+
+This context is added in form of a comment. Either directly in code, or in the String Catalog's column for comments. Without a comment, it can be difficult to understand how a string is used. For example, "Landmarks" is just a single word. Are we referring to the app's name, or landmarks on a map? This string key says "%@ is contained in %@". How can your translators tell what the %@ placeholders represent? This will impact the way the string gets translated! A good comment explains which interface element a string is used in, like a tab bar, a button, or a subtitle.
+
+6:41
+
+It's also helpful to describe surrounding user interface elements. For example, adding, that the first string is an entry in the sidebar helps a lot! The second string is the subtitle of a landmark within a list, so let's add that too. Finally, a comment should explain what kind of content can appear in each placeholder. Here, the first placeholder is the name of a landmark, and the second one is the name of a collection it is a part of. Without a comment this would be impossible to translate correctly. And this is why it's critical to provide a good comment! Last year, we gave String Catalogs the ability to track where in code a string is extracted from. This year, we use that information to help you. Introducing automatic comment generation in Xcode 26! Xcode uses an on-device model to analyze your code and can now write comments for you! Let's see it in action! So far, we have only provided comments for some of the strings in code. Having learned how important comments are, let’s improve the context we provide to translators! Here we have a string without a comment. It looks like it’s used in a Button. I’ll open the context menu for it, and select “Generate Comment”. After analyzing where the string is used, Xcode generated “The text label on a button to cancel the deletion of a collection”. Very on point! This string also has no comment yet, so I’ll let Xcode generate one for us.
+
+8:18
+
+It created “A label displayed above the location of a landmark”. That works. I want to highlight, that we can still make edits here. Your input always overrides a generated comment. I like to work together with the model to provide some extra context so I’ll add, that this string is shown in the Inspector.
+
+8:40
+
+I think this is a very useful feature, and I want Xcode to generate a comment for all new strings it extracts from code! To enable this, I open Settings, and navigate to Editing.
+
+8:56
+
+Here, I enable the setting “automatically generate string catalog comments”. From now on, when Xcode detects that new localizable strings were added in code, it generates a comment automatically. This makes it really easy to provide translators with the context they need.
+
+9:13
+
+To help developers of translation tools indicate when a comment was generated by Xcode, the XLIFF file it exports, annotates them as “auto-generated".
+
+9:23
+
+To learn more about interoperability with other tools, and everything else a String Catalog can do for you, check out "Discover String Catalogs".
+
+9:32
+
+As your project grows and becomes more complex, there are additional Xcode features and localization APIs that can help you stay organized. For example, as a project increases in size, and maybe multiple developers start working on it, we sometimes split our codebase into extensions, frameworks, and Swift Packages. And each of them can contain one or more String Catalogs. In these cases, we now have to use another parameter on the localization API: bundle. This will tell the system where the string can be found at runtime. Now, `Bundle.main` always refers to the main app. If we don't include the bundle parameter, .main is used by default. New this year is the #bundle macro. You can use it to refer to the bundle that contains resources for the current target. That is the main app, if the code runs in the main app, and it automatically finds resources of your framework or Swift Package otherwise. It also works on older versions of the OS, and does the right thing for you! Another way to organize your strings is to group related ones together, for example, grouping all strings related to a specific screen, a feature, or user flow. We call groups of strings a "Table", and each String Catalog represents one table. By default, all strings are extracted into a table called "Localizable". This matches the default file name when you create a String Catalog. Of course, we can change the name! The parameter tableName lets us put strings into the String Catalog of our choice. For example, using the table name "Discover" automatically puts them into "Discover.xcstrings" While the Landmarks app works great when creating private collections of Landmarks, I want to develop a feature where it's possible to discover more content. This content either comes from friends who I follow, or from a curated feed. Let's start developing that feature in a new framework.
+
+11:38
+
+To get started, I’ll open the File menu, and add a new Target, I'll search for “framework”.
+
+11:45
+
+Because this framework is about discovering new landmarks, I'll call it "DiscoverKit".
+
+11:53
+
+I'm starting a new screen from scratch, and I want to put all of its strings in a separate table. Let’s add a new file to DiscoverKit, select “String Catalog” and call it “Discover”.
+
+12:08
+
+For convenience, I'll open the code in the Editor on the right side, by holding down shift and option while I click my new Swift file.
+
+12:17
+
+And then I’ll make some more space by closing the Navigator.
+
+12:22
+
+I'll start developing this feature in the model layer with an enum. My new enum defines whether content comes from a friend, or is curated. It has a property to expose a localized title for itself, let's implement it. I start by using String(localized: ) to expose the string for localization. Then, I'll use the table argument for better organization. Because we're in a framework, I need to use the bundle argument too. And let's do the same for the other case.
+
+12:55
+
+Our enum is done. Now, I'll import SwiftUI and add a view to get some content on the screen.
+
+13:07
+
+I don't have any business logic in place yet, so for now I'll show a placeholder that says there will be 42 new posts.
+
+13:16
+
+That's enough typing, it's time to let Xcode do some work! I'll change the scheme to the new framework and build.
+
+13:30
+
+As soon as my build finishes, the new strings appear in my Catalog.
+
+13:36
+
+And they already have a comment! Great! For the remaining UI work I want to introduce you to a new workflow in Xcode 26. Since the introduction of String Catalogs, they have supported extracting strings from code. This year, they can help you write your code by generating symbols for manually added strings. Let's continue building our view with this new workflow. My goal is to add a navigation title, and a navigation subtitle. Now, this entire view is very much in development. By separating the string keys from their values I can iterate on the exact wording without needing to update my code.
+
+14:17
+
+To get started, I click the + button in the String Catalog to add a new string. Many projects prefer a setup of using uppercase keys to indicate a semantic meaning of the strings. I'll do that here too. The key should be "TITLE", and the value "Discover Landmarks”. Because I added this string manually, I'll write the comment myself.
+
+14:41
+
+The Attribute Inspector tells me how to use the string in code. That’s really helpful! I will do exactly that! To show a title in the navigation bar, I'll use the view modifier `.navigationTitle`.
+
+14:56
+
+For its value, I’ll type a leading dot, and start typing the name of the table. Xcode can auto-complete the table name for me, and all manual strings contained in this table are also suggested.
+
+15:11
+
+That was easy! Notice that I didn't have to manually type out a bundle and table name this time. Let's do this again, but for the navigation subtitle! I’ll add a new string to the Catalog, and call it “SUBTITLE”.
+
+15:25
+
+I want it to summarize how many posts are from friends, and how many were curated. For that I need a placeholder and format specifiers do just that! I’ll start by typing %, and now Xcode suggests me a few to use. Here, I want a number, so I choose a placeholder for an integer.
+
+15:45
+
+The placeholder represents the number of posts from friends, so I call it “friendsPosts”.
+
+15:54
+
+I continue by adding another placeholder for curated posts.
+
+16:02
+
+Then it's time for a comment.
+
+16:06
+
+The string is now ready to be used in code. I’ll use the modifier “Navigation Subtitle” this time.
+
+16:17
+
+Again, I start typing `.Discover` to find the right table, and auto-completion takes it from here.
+
+16:28
+
+That was much less typing! Notice how Xcode suggested the correct types for me! This new feature makes it really easy to work with manual strings, and I can now rely on autocompletion and the compiler for loading these localized resources! Now, when I want to change the values of my strings later, I can simply update them in the String Catalog without having to modify my code. How many different ways have you spelled "OK" in the past, and wanted to correct them all with one simple action? To generate a symbol name that feels just right in Swift, Xcode uses the key and value of the string. Strings with no placeholder can be accessed like any other static property. If a string contains a placeholder, Xcode generates a function instead, and uses the placeholder name as the argument label. The generated symbols are static variables or functions on the type LocalizedStringResource. That's really powerful, because you can use them anywhere a LocalizedStringResource is used! This includes SwiftUI views such as Text or Button, or view modifiers like .navigationSubtitle() If you don't use SwiftUI, Foundation's String(localized: ) works with the type LocalizedStringResource as well.
+
+17:45
+
+Custom views and other declarations using LocalizedStringResource, can now also be called using a generated symbol. Your symbols are directly accessible on LocalizedStringResource if you use the default table name "Localizable". When using a non-default table name, generated symbols are nested in the namespace of that table. This means you can access them in code starting with your table name. New projects created by Xcode 26 have symbol generation enabled by default. To use it in an existing project, turn on the build setting "Generate String Catalog Symbols”.
+
+18:22
+
+As we've seen, Xcode now fully supports two different workflows for managing your strings: extracting them from code, and referencing them with a type-safe API. This brings up the question: which workflow should I use? We recommend you start by relying on string extraction. You write the strings where you develop your UI, allowing you to read and understand the code more quickly. Using this workflow, you can make use of Xcode's comment generation, which saves you some typing, while still providing meaningful context to your translators. As your project grows, you might find yourself wanting more control over the organization of your strings. In this case we recommend using generated symbols. This allows you to separate keys from their values, so you can iterate on your text without changing your code. In addition, Xcode's autocompletion makes it easy to reference strings across all of your tables. Finally, generated symbols help you avoid boilerplate code in frameworks and packages.
+
+19:25
+
+Both approaches have their strengths, and we believe you should be free to decide what works best for your project. That's why we've added a powerful refactoring feature so you can easily switch between the two. Let's try it out in the DiscoverKit framework! I think the placeholder text inside the Navigation Stack is a great candidate to be referenced by a symbol. I open the context menu for it, and select “Refactor > Convert Strings to Symbols”.
+
+19:53
+
+A preview UI opens up, showing me the exact locations, where the symbol will be used instead of the string. Clicking the highlighted section allows me to compare the symbol with the original code.
+
+20:07
+
+Let’s change the name of the key to "feedTitle" to make it more semantic. I can also add a nice name for Argument 1! I’ll call it "newPosts". That looks good! I'll confirm the refactoring.
+
+20:21
+
+After thinking about both approaches a little, I've decided to use generated symbols for all strings in this table. Let's select the remaining two, select Refactor > Convert Strings to Symbols.
+
+20:37
+
+Because I’m happy with the symbol names, I’ll click on “Convert”.
+
+20:44
+
+That's how easy it is to refactor an entire table at once! I encourage you to explore these localization features in Xcode on your own. Start by relying on string extraction to localize your project. Provide meaningful comments to your translators, either by writing them yourself, or using Xcode's comment generation. As the complexity of your project grows, consider using generated symbols to maintain precise control over your strings. Finally, for more details on String Catalogs, check out our previous video "Discover String Catalogs". Thank you for watching, and I hope these new features help you streamline your localization workflow.
+
+</Transcript>
+
+## Code
+
+1:34 - [Localizable strings](https://developer.apple.com/videos/play/wwdc2025/225/?time=94)
+
+```swift
+// import SwiftUI
+Text("Featured Landmark", comment: "Big headline in the hero image of featured landmarks.")
+
+Button("Keep") { }
+
+// import Foundation
+String(localized: "New Collection", comment: "Default name for a new user-created collection.")
+```
+
+
+6:00 - [Adding a comment](https://developer.apple.com/videos/play/wwdc2025/225/?time=360)
+
+```swift
+Text("Delete",
+comment: "Delete button shown in an alert asking for confirmation to delete the collection.")
+
+String(localized: "Shared by Friends", comment: "Subtitle of post that was shared by friends.")
+```
+
+
+9:13 - [XLIFF file](https://developer.apple.com/videos/play/wwdc2025/225/?time=553)
+
+```
+// Field for automatically generated comments in the XLIFF
+
+<trans-unit id="Grand Canyon" xml:space="preserve">
+<source>Grand Canyon</source>
+<target state="new">Grand Canyon</target>
+<note from="auto-generated">Suggestion for searching landmarks</note>
+</trans-unit>
+```
+
+
+9:58 - [Localized String in the main app and a Swift Package or Framework](https://developer.apple.com/videos/play/wwdc2025/225/?time=598)
+
+```swift
+// Localized String in the main app:
+Text("My Collections", 
+comment: "Section title above user-created collections.")
+
+// Localized String in a Swift Package or Framework
+Text("My Collections", 
+bundle: #bundle, 
+comment: "Section title above user-created collections.")
+```
+
+
+10:56 - [Localized String with a tableName parameter](https://developer.apple.com/videos/play/wwdc2025/225/?time=656)
+
+```swift
+// Localized String in the main app:
+Text("My Collections",
+tableName: "Discover",
+comment: "Section title above user-created collections.")
+
+// Localized String in a Swift Package or Framework
+Text("My Collections",
+tableName: "Discover",
+bundle: #bundle, 
+comment: "Section title above user-created collections.")
+```
+
+
+17:31 - [Symbol usage](https://developer.apple.com/videos/play/wwdc2025/225/?time=1051)
+
+```swift
+// Symbol usage in SwiftUI
+Text(.introductionTitle)
+
+.navigationSubtitle(.subtitle(friendsPosts: 42))
+
+
+// Symbol usage in Foundation
+String(localized: .curatedCollection)
+
+
+// Working with generated symbols in your own types
+struct CollectionDetailEditingView: View {
+    let title: LocalizedStringResource
+    
+    init(title: LocalizedStringResource) {
+        self.title = title
+    }
+}
+CollectionDetailEditingView(title: .editingTitle)
