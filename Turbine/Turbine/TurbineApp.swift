@@ -3,6 +3,7 @@
 //  Turbine
 //
 //  Created by Malik on 1/31/26.
+//  Last_Updated_By: GPT 5.2 Medium Reasoning - Windsurf IDE
 //
 
 import SwiftUI
@@ -11,7 +12,8 @@ import SwiftUI
 struct TurbineApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootContainer()
+                .environment(\.appEnvironment, AppEnvironment.current())
         }
     }
 }

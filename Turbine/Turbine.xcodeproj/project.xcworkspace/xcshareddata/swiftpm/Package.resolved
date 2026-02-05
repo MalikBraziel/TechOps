@@ -1,0 +1,96 @@
+{
+  "originHash" : "fa3e9e2ed7daa7a7461b26385c56d5a5386ffe8d767d4f7b52bde3b24970920f",
+  "pins" : [
+    {
+      "identity" : "adaptivedimensions",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MalikBraziel/AdaptiveDimensions",
+      "state" : {
+        "branch" : "main",
+        "revision" : "0f54ec46843b5d804cf950d17b53c0889cd76d61"
+      }
+    },
+    {
+      "identity" : "chronicle",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Aeastr/Chronicle.git",
+      "state" : {
+        "revision" : "78f4d0d634c4834f13f7ab1bcca79c150c4c172a",
+        "version" : "3.0.2"
+      }
+    },
+    {
+      "identity" : "loupe",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MalikBraziel/Loupe",
+      "state" : {
+        "branch" : "main",
+        "revision" : "f1619b078802421c78db077b9dbbac192c929ef8"
+      }
+    },
+    {
+      "identity" : "obfuscate",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Aeastr/Obfuscate.git",
+      "state" : {
+        "revision" : "459e6ea0692ed5a5cbc79d414d56e1ff3b07e44d",
+        "version" : "1.4.0"
+      }
+    },
+    {
+      "identity" : "portal",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MalikBraziel/Portal",
+      "state" : {
+        "branch" : "main",
+        "revision" : "307b08952f63b49f107ca773219f53e13e288bf3"
+      }
+    },
+    {
+      "identity" : "settingskit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MalikBraziel/SettingsKit",
+      "state" : {
+        "branch" : "main",
+        "revision" : "19c3dd1e60b1b8ed2cef9c697936d6f81af2fc8e"
+      }
+    },
+    {
+      "identity" : "swift-log",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-log.git",
+      "state" : {
+        "revision" : "2778fd4e5a12a8aaa30a3ee8285f4ce54c5f3181",
+        "version" : "1.9.1"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-syntax",
+      "state" : {
+        "revision" : "0687f71944021d616d34d922343dcef086855920",
+        "version" : "600.0.1"
+      }
+    },
+    {
+      "identity" : "uiportalbridge",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Aeastr/UIPortalBridge.git",
+      "state" : {
+        "revision" : "fd542e0d66b305cd802fdbacd7f1a153c210c50a",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "universaloverlays",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MalikBraziel/UniversalOverlays",
+      "state" : {
+        "branch" : "main",
+        "revision" : "64212a7a0a45420db22496453c68b8dca334b051"
+      }
+    }
+  ],
+  "version" : 3
+}

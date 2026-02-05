@@ -3,8 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 90;
 	objects = {
+
+/* Begin PBXBuildFile section */
+		84E8226E2F34328200CB3F2B /* SettingsKit in Frameworks */ = {isa = PBXBuildFile; productRef = 84E8226D2F34328200CB3F2B /* SettingsKit */; };
+		84E822712F3432D600CB3F2B /* PortalHeaders in Frameworks */ = {isa = PBXBuildFile; productRef = 84E822702F3432D600CB3F2B /* PortalHeaders */; };
+		84E822732F3432D600CB3F2B /* PortalTransitions in Frameworks */ = {isa = PBXBuildFile; productRef = 84E822722F3432D600CB3F2B /* PortalTransitions */; };
+		84E822752F3432D600CB3F2B /* _PortalPrivate in Frameworks */ = {isa = PBXBuildFile; productRef = 84E822742F3432D600CB3F2B /* _PortalPrivate */; };
+		84E822782F34331800CB3F2B /* Loupe in Frameworks */ = {isa = PBXBuildFile; productRef = 84E822772F34331800CB3F2B /* Loupe */; };
+		84E8227B2F34340800CB3F2B /* UniversalOverlays in Frameworks */ = {isa = PBXBuildFile; productRef = 84E8227A2F34340800CB3F2B /* UniversalOverlays */; };
+		84E8227E2F34344200CB3F2B /* AdaptiveDimensions in Frameworks */ = {isa = PBXBuildFile; productRef = 84E8227D2F34344200CB3F2B /* AdaptiveDimensions */; };
+/* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		84E81E9C2F2E782100CB3F2B /* PBXContainerItemProxy */ = {
@@ -50,24 +60,25 @@
 /* Begin PBXFrameworksBuildPhase section */
 		84E81E8B2F2E77FA00CB3F2B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
+				84E822732F3432D600CB3F2B /* PortalTransitions in Frameworks */,
+				84E822782F34331800CB3F2B /* Loupe in Frameworks */,
+				84E8226E2F34328200CB3F2B /* SettingsKit in Frameworks */,
+				84E8227E2F34344200CB3F2B /* AdaptiveDimensions in Frameworks */,
+				84E8227B2F34340800CB3F2B /* UniversalOverlays in Frameworks */,
+				84E822752F3432D600CB3F2B /* _PortalPrivate in Frameworks */,
+				84E822712F3432D600CB3F2B /* PortalHeaders in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		84E81E982F2E782100CB3F2B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		84E81EA22F2E782100CB3F2B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -105,13 +116,18 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			fileSystemSynchronizedGroups = (
 				84E81E902F2E77FA00CB3F2B /* Turbine */,
 			);
 			name = Turbine;
 			packageProductDependencies = (
+				84E8226D2F34328200CB3F2B /* SettingsKit */,
+				84E822702F3432D600CB3F2B /* PortalHeaders */,
+				84E822722F3432D600CB3F2B /* PortalTransitions */,
+				84E822742F3432D600CB3F2B /* _PortalPrivate */,
+				84E822772F34331800CB3F2B /* Loupe */,
+				84E8227A2F34340800CB3F2B /* UniversalOverlays */,
+				84E8227D2F34344200CB3F2B /* AdaptiveDimensions */,
 			);
 			productName = Turbine;
 			productReference = 84E81E8E2F2E77FA00CB3F2B /* Turbine.app */;
@@ -134,8 +150,6 @@
 				84E81E9E2F2E782100CB3F2B /* TurbineTests */,
 			);
 			name = TurbineTests;
-			packageProductDependencies = (
-			);
 			productName = TurbineTests;
 			productReference = 84E81E9B2F2E782100CB3F2B /* TurbineTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -157,8 +171,6 @@
 				84E81EA82F2E782100CB3F2B /* TurbineUITests */,
 			);
 			name = TurbineUITests;
-			packageProductDependencies = (
-			);
 			productName = TurbineUITests;
 			productReference = 84E81EA52F2E782100CB3F2B /* TurbineUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -195,7 +207,14 @@
 			);
 			mainGroup = 84E81E852F2E77FA00CB3F2B;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
+			packageReferences = (
+				84E8226C2F34328200CB3F2B /* XCRemoteSwiftPackageReference "SettingsKit" */,
+				84E8226F2F3432D600CB3F2B /* XCRemoteSwiftPackageReference "Portal" */,
+				84E822762F34331800CB3F2B /* XCRemoteSwiftPackageReference "Loupe" */,
+				84E822792F34340800CB3F2B /* XCRemoteSwiftPackageReference "UniversalOverlays" */,
+				84E8227C2F34344200CB3F2B /* XCRemoteSwiftPackageReference "AdaptiveDimensions" */,
+			);
+			preferredProjectObjectVersion = 90;
 			productRefGroup = 84E81E8F2F2E77FA00CB3F2B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -210,48 +229,36 @@
 /* Begin PBXResourcesBuildPhase section */
 		84E81E8C2F2E77FA00CB3F2B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		84E81E992F2E782100CB3F2B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		84E81EA32F2E782100CB3F2B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		84E81E8A2F2E77FA00CB3F2B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		84E81E972F2E782100CB3F2B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		84E81EA12F2E782100CB3F2B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -269,7 +276,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		84E81EAD2F2E782100CB3F2B /* Debug */ = {
+		84E81EAD2F2E782100CB3F2B /* Debug configuration for PBXProject "Turbine" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -322,7 +329,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -330,10 +337,11 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
-		84E81EAE2F2E782100CB3F2B /* Release */ = {
+		84E81EAE2F2E782100CB3F2B /* Release configuration for PBXProject "Turbine" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -380,17 +388,18 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 6.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		84E81EB02F2E782100CB3F2B /* Debug */ = {
+		84E81EB02F2E782100CB3F2B /* Debug configuration for PBXNativeTarget "Turbine" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -405,6 +414,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -417,12 +427,12 @@
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		84E81EB12F2E782100CB3F2B /* Release */ = {
+		84E81EB12F2E782100CB3F2B /* Release configuration for PBXNativeTarget "Turbine" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -437,6 +447,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -449,12 +460,12 @@
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		84E81EB32F2E782100CB3F2B /* Debug */ = {
+		84E81EB32F2E782100CB3F2B /* Debug configuration for PBXNativeTarget "TurbineTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -462,7 +473,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 383DQGLZC9;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Showcase.TurbineTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -470,13 +481,13 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Turbine.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Turbine";
 			};
 			name = Debug;
 		};
-		84E81EB42F2E782100CB3F2B /* Release */ = {
+		84E81EB42F2E782100CB3F2B /* Release configuration for PBXNativeTarget "TurbineTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -484,7 +495,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 383DQGLZC9;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Showcase.TurbineTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -492,19 +503,20 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Turbine.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Turbine";
 			};
 			name = Release;
 		};
-		84E81EB62F2E782100CB3F2B /* Debug */ = {
+		84E81EB62F2E782100CB3F2B /* Debug configuration for PBXNativeTarget "TurbineUITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 383DQGLZC9;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Showcase.TurbineUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -512,19 +524,20 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Turbine;
 			};
 			name = Debug;
 		};
-		84E81EB72F2E782100CB3F2B /* Release */ = {
+		84E81EB72F2E782100CB3F2B /* Release configuration for PBXNativeTarget "TurbineUITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 383DQGLZC9;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Showcase.TurbineUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -532,7 +545,7 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Turbine;
 			};
@@ -544,40 +557,117 @@
 		84E81E892F2E77FA00CB3F2B /* Build configuration list for PBXProject "Turbine" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				84E81EAD2F2E782100CB3F2B /* Debug */,
-				84E81EAE2F2E782100CB3F2B /* Release */,
+				84E81EAD2F2E782100CB3F2B /* Debug configuration for PBXProject "Turbine" */,
+				84E81EAE2F2E782100CB3F2B /* Release configuration for PBXProject "Turbine" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		84E81EAF2F2E782100CB3F2B /* Build configuration list for PBXNativeTarget "Turbine" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				84E81EB02F2E782100CB3F2B /* Debug */,
-				84E81EB12F2E782100CB3F2B /* Release */,
+				84E81EB02F2E782100CB3F2B /* Debug configuration for PBXNativeTarget "Turbine" */,
+				84E81EB12F2E782100CB3F2B /* Release configuration for PBXNativeTarget "Turbine" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		84E81EB22F2E782100CB3F2B /* Build configuration list for PBXNativeTarget "TurbineTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				84E81EB32F2E782100CB3F2B /* Debug */,
-				84E81EB42F2E782100CB3F2B /* Release */,
+				84E81EB32F2E782100CB3F2B /* Debug configuration for PBXNativeTarget "TurbineTests" */,
+				84E81EB42F2E782100CB3F2B /* Release configuration for PBXNativeTarget "TurbineTests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		84E81EB52F2E782100CB3F2B /* Build configuration list for PBXNativeTarget "TurbineUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				84E81EB62F2E782100CB3F2B /* Debug */,
-				84E81EB72F2E782100CB3F2B /* Release */,
+				84E81EB62F2E782100CB3F2B /* Debug configuration for PBXNativeTarget "TurbineUITests" */,
+				84E81EB72F2E782100CB3F2B /* Release configuration for PBXNativeTarget "TurbineUITests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		84E8226C2F34328200CB3F2B /* XCRemoteSwiftPackageReference "SettingsKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MalikBraziel/SettingsKit";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		84E8226F2F3432D600CB3F2B /* XCRemoteSwiftPackageReference "Portal" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MalikBraziel/Portal";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		84E822762F34331800CB3F2B /* XCRemoteSwiftPackageReference "Loupe" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MalikBraziel/Loupe";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		84E822792F34340800CB3F2B /* XCRemoteSwiftPackageReference "UniversalOverlays" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MalikBraziel/UniversalOverlays";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		84E8227C2F34344200CB3F2B /* XCRemoteSwiftPackageReference "AdaptiveDimensions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MalikBraziel/AdaptiveDimensions";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		84E8226D2F34328200CB3F2B /* SettingsKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84E8226C2F34328200CB3F2B /* XCRemoteSwiftPackageReference "SettingsKit" */;
+			productName = SettingsKit;
+		};
+		84E822702F3432D600CB3F2B /* PortalHeaders */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84E8226F2F3432D600CB3F2B /* XCRemoteSwiftPackageReference "Portal" */;
+			productName = PortalHeaders;
+		};
+		84E822722F3432D600CB3F2B /* PortalTransitions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84E8226F2F3432D600CB3F2B /* XCRemoteSwiftPackageReference "Portal" */;
+			productName = PortalTransitions;
+		};
+		84E822742F3432D600CB3F2B /* _PortalPrivate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84E8226F2F3432D600CB3F2B /* XCRemoteSwiftPackageReference "Portal" */;
+			productName = _PortalPrivate;
+		};
+		84E822772F34331800CB3F2B /* Loupe */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84E822762F34331800CB3F2B /* XCRemoteSwiftPackageReference "Loupe" */;
+			productName = Loupe;
+		};
+		84E8227A2F34340800CB3F2B /* UniversalOverlays */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84E822792F34340800CB3F2B /* XCRemoteSwiftPackageReference "UniversalOverlays" */;
+			productName = UniversalOverlays;
+		};
+		84E8227D2F34344200CB3F2B /* AdaptiveDimensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84E8227C2F34344200CB3F2B /* XCRemoteSwiftPackageReference "AdaptiveDimensions" */;
+			productName = AdaptiveDimensions;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 84E81E862F2E77FA00CB3F2B /* Project object */;
 }
