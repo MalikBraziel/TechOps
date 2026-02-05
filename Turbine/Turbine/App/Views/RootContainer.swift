@@ -5,20 +5,20 @@
 //  Created: February 04, 2026 @ 09:42:00 PM EST
 //  Created_By: GPT 5.2 Codex High - Windsurf IDE - Implementation Agent
 //
-//  Last_Updated: February 04, 2026 @ 09:42:00 PM EST
-//  Last_Updated_By: GPT 5.2 Medium Reasoning - Windsurf IDE
+//  Last_Updated: February 04, 2026 @ 10:22:23 PM EST
+//  Last_Updated_By: GPT 5.2 Medium Reasoning - Windsurf IDE - Implementation Agent
 //
 //  PURPOSE:
-//  - App composition root for Phase 1.1
-//  - Decides between iPhone/iPad shells (expanded in later phases)
-//  - Displays device profile summary for verification
+//  - App composition root for Phase 1.x
+//  - Routes iPhone to TabRootPage and iPad to the shell scaffold
+//  - Displays device profile summary for verification on iPad/unknown
 //
 //  DATA FLOW:
 //  1a) AppEnvironment -> RootContainer
-//  1b) RootContainer -> RootShellView
+//  1b) RootContainer -> TabRootPage / RootShellView
 //
 //  OBJECTS:
-//  TurbineApp -> RootContainer -> RootShellView
+//  TurbineApp -> RootContainer -> TabRootPage / RootShellView
 //
 //  REFERENCES:
 //  - SKILL.md (navigation containers as composition roots)
@@ -36,11 +36,16 @@ struct RootContainer: View {
     }
 
     var body: some View {
-        RootShellView(
-            mode: rootMode,
-            profile: appEnvironment.deviceProfile,
-            buildInfo: appEnvironment.buildInfo
-        )
+        switch rootMode {
+        case .iPhone:
+            TabRootPage()
+        case .iPad, .unknown:
+            RootShellView(
+                mode: rootMode,
+                profile: appEnvironment.deviceProfile,
+                buildInfo: appEnvironment.buildInfo
+            )
+        }
     }
 }
 
